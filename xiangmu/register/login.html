@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <script src="js/header.js"></script>
+    <div id="main">
+        <div class="margin">
+            <div class="main-l">
+                <div class="title">
+                    <span>现在注册</span>
+                    <span>送100金币，可直接抵现</span>
+                </div>
+                <div class="box banner1">
+                    <div class="imgbox">
+                        <a href="##"><img src="img/1.jpg" alt=""></a>
+                        <a href="##"><img src="img/1.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-r">
+                <form>
+                   <input type="text" id="user" name="user" required class="txtcommon" placeholder="用户名"><br><br>
+                   <input type="password" id="pass" name="pass" class="txtcommon" required placeholder="密码"><br><br>
+                   <input type="password" id="pass2" name="pass2" required equalTo="#pass" class="txtcommon" required placeholder="确认密码"><br><br>
+                    <input type="button" id="btn1" value="注册" class="btncommon"onclick="javascript:window.open('register.html')">
+                    <input type="button" id="btn" value="登陆" class="btncommon">
+                    <span class="msg"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+   <script src="js/footer.js"></script>
+   <script src="js/jquery.2.2.4.js"></script>
+   <script src="js/jquery.banner.1.1.js"></script>
+   <script src="libs/jquery.validate.js"></script>
+   <script src="libs/jquery.validate.messages_zh.js"></script>
+</body>
+
+<script>
+    $(".banner1").banner({
+        items:$(".banner1 .imgbox a").children(),
+        list:false,
+        autoPlay:true
+    })
+</script>
+<script>
+    console.log(56)
+    $("form").validate();
+    console.log(58)
+</script>
+<script>
+    class Logig{
+        constructor(){
+            this.user = document.querySelector("#user");
+            this.pass = document.querySelector("#pass");
+            this.pass2 = document.querySelector("#pass2");
+            this.btn = document.querySelector("#btn");
+            this.msg = document.querySelector(".msg")
+
+            this.init();
+        }
+        init(){
+            var that = this;
+            this.btn.onclick = function(){
+                // 点击时先获取localstroage
+                that.getUserMsg()
+            }
+        }
+        getUserMsg(){
+            // 获取的同时直接转换，方便使用
+            this.usermsg = localStorage.getItem("usermsg") ? JSON.parse(localStorage.getItem("usermsg")) : [];
+            // 开始验证
+            this.check()
+        }
+        check(){
+            // 遍历所有的用户名
+            for (var i=0;i<this.usermsg.length;i++) {
+            //    每次判断当前用户名是否和指定用户名密码符合
+            if(this.usermsg[i].user == this.user.value && this.usermsg[i].pass ==this.pass.value){
+                // 如果符合，登陆成功，修改账号状态
+                this.usermsg[i].onff = 1;
+                // 再存回去，才能实现修改
+                localStorage.setItem("usermsg",JSON.stringify(this.usermsg))
+                // 给提示语句
+                this.msg.innerHTML = "登陆成功，3秒后跳转"
+                setTimeout(() =>{
+                    location.href = "../index.html"
+                },3000);
+                //结束
+                return
+            }
+            }
+            // 如果没结束，表示登陆失败，显示失败信息
+            this.msg.innerHTML = "账号密码不符"
+        }
+    }
+    new Logig;
+</script>
+</html>

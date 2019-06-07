@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>car</title>
+    <link rel="stylesheet" href="../car/css/car.css">
+</head>
+<body>
+    <script src="js/header.js"></script>
+    <div id="main">
+        <div class="margin">
+            <table  cellspacing="0"  class="tab" >
+                <thead>
+                    <tr>
+                            <th>选中</th>
+                            <th>图片</th>
+                            <th>名字</th>
+                            <th>价格</th>
+                            <th>数量</th>
+                            <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <!-- <tr index="123132">
+                        <td><input type="checkbox"></td>
+                        <td><img src="https://img11.360buyimg.com/n7/jfs/t1/39472/4/1934/277224/5cbee1acEcb923f6d/8574160895658a39.jpg"></td>
+                        <td>【预售】魅族 16s 骁龙855全面屏拍照游戏 6GB+128GB 碳纤黑 全网通移动联通电信4G 双卡双待</td>
+                        <td>9998.00</td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td><span class="delete">删除</span></td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <div class="g_btn"><a href="../goodslist/goodlist.html" target="_blank">继续购物</a></div>
+        </div>
+    </div>
+    <script src="js/footer.js"></script>
+</body>
+<script src="js/ajax.2.0.js"></script>
+<script src="js/cookie.js"></script>
+<script>
+    class Car{
+        constructor(){
+            this.tbody = document.querySelector("tbody");
+            this.url = "http://localhost/xiangmu/data/goodsnew.json";
+            this.init()
+            this.addEvent()
+        }
+        init(){
+            var that = this;
+            ajax({
+                url:this.url,
+                success:function(res){
+                    that.res = JSON.parse(res)
+                    // console.log(res)
+                    console.log( that.res)
+                    // 拿到cookie
+                    that.getCookie()
+                }
+            })
+        }
+        getCookie(){
+            console.log(getCookie("shangpin"))
+            this.goods = JSON.parse(getCookie("shangpin"));
+            
+            //渲染页面
+            this.display();
+        }
+        display(){
+            var str="";
+            // 遍历所有数据
+            for (var i=0;i<this.res.length;i++) {
+                // 遍历所有cookie
+                for (var j=0;j<this.goods.length;j++) {
+                //两两相比,发现id重复,那就是要加入购物车的商品
+                    if (this.res[i].goodsId == this.goods[j].id) {
+                        str+=` <tr index="${this.goods[j].id}">
+                                    <td><input type="checkbox"></td>
+                                    <td><img src="${this.res[i].src}"></td>
+                                    <td>${this.res[i].name}</td>
+                                    <td>${this.res[i].price}</td>
+                                    <td><input type="number" value="${this.goods[j].num}" min=1></td>
+                                    <td><span class="delete">删除</span></td>
+                                </tr>`   
+                    }
+                }
+            }
+            this.tbody.innerHTML = str;
+        }
+        addEvent(){
+            var that = this;
+            //利用事件委托绑定span的事件
+            this.tbody.addEventListener("click",function(eve){
+                var e=eve ||window.event;
+                var target=e.target||e.srcElement
+                if (eve.target.className =="delete") {
+                    // D2.保存商品id
+                    that.id = 
+                    eve.target.parentNode.parentNode.getAttribute("index");
+                    //D3.删除DOM元素
+                    eve.target.parentNode.parentNode.remove()
+                    // D4.删除cookie中的数据
+                    that.changeCookie(function(i){
+                        that.goods.splice(i,1)
+                    })
+                }
+            })
+            this.tbody.addEventListener("input",function(eve){
+                if (eve.target.type == "number") {
+                    //U1.保存商品id
+                    that.id = 
+                    eve.target.parentNode.parentNode.getAttribute("index");
+                    //保存输入框的值
+                    // that.num = eve.target.value
+                    // U2.修改cookie中的数据
+                    that.changeCookie(function(i){
+                        that.goods[i].num = eve.target.value;
+                    })
+                }
+            })
+        }
+        changeCookie(callback){
+            for (var i=0;i<this.goods.length;i++) {
+                if (this.goods[i].id == this.id) {
+                    // 删除或修改
+                    callback(i);
+                    break;
+                }
+                
+            }
+            setCookie("shangpin",JSON.stringify(this.goods))
+        }
+    }
+    new Car;
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>register</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <script src="js/header.js"></script>
+    <div id="main">
+        <div class="margin">
+            <div class="main-l">
+                <div class="title">
+                    <span>现在注册</span>
+                    <span>送100金币，可直接抵现</span>
+                </div>
+                <div class="box banner1">
+                    <div class="imgbox">
+                        <a href="##"><img src="img/1.jpg" alt=""></a>
+                        <a href="##"><img src="img/1.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-r">
+                <form>
+                   <input type="text" id="user" name="user" required class="txtcommon" placeholder="用户名"><br><br>
+                   <input type="password" id="pass" name="pass" class="txtcommon" required placeholder="密码"><br><br>
+                   <input type="password" id="pass2" name="pass2" required equalTo="#pass" class="txtcommon" required placeholder="确认密码"><br><br>
+                    <input type="button" id="btn" value="注册" class="btncommon">
+                    <input type="button" id="btn2" value="登陆" class="btncommon" onclick="javascript:window.open('login.html')">
+                    <span class="msg"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+   <script src="js/footer.js"></script>
+   <script src="js/jquery.2.2.4.js"></script>
+   <script src="js/jquery.banner.1.1.js"></script>
+   <script src="libs/jquery.validate.js"></script>
+   <script src="libs/jquery.validate.messages_zh.js"></script>
+</body>
+
+<script>
+        $(".banner1").banner({
+            items:$(".banner1 .imgbox a").children(),
+            list:false,
+            autoPlay:true
+        })
+    </script>
+    <script>
+         $("form").validate();
+    </script>
+     <script>
+         class Register{
+             constructor(){
+                 this.user = document.querySelector("#user");
+                 this.pass = document.querySelector("#pass");
+                 this.btn = document.querySelector("#btn");
+                 this.msg = document.querySelector(".msg");
+ 
+                 this.init()
+             }
+            init(){
+                var that = this;
+                this.btn.onclick = function(){
+                 // 先获取指定的localStroage,用来判断是否是第一次注册
+                 that.getUserMsg()
+                }
+            }
+            getUserMsg(){
+                this.usermsg = localStorage.getItem("usermsg");
+             //    console.log(this.usermsg)
+             // 开始判断是否是第一次
+                 this.setUserMsg()
+            }
+            setUserMsg(){
+             //localStroage中的数格式为[{user:"admin",pass:1234,onoff:0},{user:"admin1",pass:1234,onoff:1}]
+             // 如果是第一次，直接注册，如果不是第一次判断是否重名
+             if (this.usermsg == null) {
+                 // 第一次
+                 this.usermsg = [{
+                     user:this.user.value,
+                     pass:this.pass.value,
+                     onoff:0
+                 }]
+                 this.msg.innerHTML = "";
+             }else{
+                 // 不是第一次，获取的同时转成数组，然后开始判断是否重名
+                 this.usermsg = JSON.parse(localStorage.getItem("usermsg"));
+                 for (var i=0;i<this.usermsg.length;i++) {
+                     if (this.usermsg[i].user == this.user.value) {
+                         this.msg.innerHTML = "注册重名";
+                         return;
+                     }
+                 }
+                 this.msg.innerHTML = "";
+                 this.usermsg.push({
+                     user:this.user.value,
+                     pass:this.pass.value,
+                     onoff:0
+                 })
+             }
+             localStorage.setItem("usermsg",JSON.stringify(this.usermsg))
+             this.msg.innerHTML = "注册成功";
+            }
+         }
+         new Register();
+     </script>
+</html>

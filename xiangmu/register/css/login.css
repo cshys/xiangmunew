@@ -1,0 +1,33 @@
+*{margin: 0;padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+.margin{width:1200px; margin:0 auto;}
+#header{width: 100%;border-bottom: 1px solid #ccc;padding: 10px 0px;}
+#main{width: 100%;background: #f5f5f5;}
+#main .margin{height: 600px;}
+#main .main-l{float: left;}
+#main .main-l .title{font:16px/30px "";height: 30px;padding: 10px 0px;}
+#main .main-l .title :nth-child(2) {font-size: 12px;color: #f00; }
+#main .main-l .box{width: 405px;height: 346px;overflow: hidden;position: relative;margin-right: 30px;margin-left: 39px;margin-top: 50px;}
+#main .main-l .box img{width: 405px;height: 346px;position: absolute;left: 405px;top: 0;}
+#main .main-l .box img:nth-child(1){left: 0;}
+#main .main-r{float: left;height: 450px;width: 360px;border: 1px solid #ccc;margin:50px 0 0 0;background: #fff;margin-left: 100px;}
+#main .main-r form{width: 270px;margin: 50px auto;position: relative;}
+#main .main-r form input.txtcommon{width: 270px;height: 35px;border: 1px solid #ccc;font: 16px/35px "";background: transparent;border: 1px solid #ccc;}
+#main .main-r form input.btncommon{width: 130px;height: 35px;font: 16px/35px "";cursor: pointer;color: #fff;background: #f00;border: 0;margin-top: 25px;}
+#main .main-r form span{display: block;width: 100px;position: absolute;top: 173px;height: 20px;left: 80px;text-align: center;}
+
+
+#footer{width: 100%;}
+#footer .footer-t a{font-size: 12px;color: #333;}
+#footer .footer-b{padding: 5px 0 50px 0}
+#footer .footer-b ul{display: inline-block;}
+#footer .footer-b ul li{height: 50px;display: inline-block;}
+#footer .footer-b ul li .zhs_pic{background: url(../img/foot_zl.png) no-repeat;display: inline-block;width: 55px;height: 50px;margin-right: 15px;background-position: 0px 0px;}
+#footer .footer-b ul li .dsxh1{background-position: 0px 0px}
+#footer .footer-b ul li .dsxh2{background-position: -64px 0px}
+#footer .footer-b ul li .dsxh3{background-position: -130px 0px}
+#footer .footer-b ul li .dsxh4{background-position: -206px 0px}
+#footer .footer-b ul li .dsxh5{background-position: -530px 0px}
+#footer .footer-b ul li .dsxh6{background-position: -610px 0px}
+#footer .footer-b ul li .dsxh7{background-position: -730px 0px}
