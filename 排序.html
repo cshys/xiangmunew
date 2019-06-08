@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Untitled Document</title>
+   
+</head>
+<body>
+   
+</body>
+<script>
+   var arr=[5,8,3,4,15,9,7,]
+   //数组的方法排序，以字符的方法排序
+   arr.sort()
+   console.log(arr)
+   //用sort从小到大排序：
+   arr.sort(function(a,b){ 
+      return a-b;
+   }) 
+   console.log(arr)
+   //用sort从大到小排序
+   arr.sort(function(a,b){ 
+      return b-a;
+   })
+   console.log(arr)
+   //冒泡排序：两两比较
+   for(var i=0;i<arr.length-1;i++){
+      for(var j=0;j<arr.length-1-i;j++){
+         if(arr[j]>arr[j+1]){
+            var ls=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=ls;
+         }
+      }
+   }
+   console.log(arr)
+   //选择排序：用第一个一次和后面所有的比较
+   for(var i=0;i<arr.length-1;i++){
+      var min=arr[i]
+      var minIndex=i;
+      for(var j=i+1;j<arr.length;j++){
+         if(min>arr[j]){
+            min=arr[j];
+            minIndex=j;
+         }
+      }
+      arr[minIndex]=arr[i];
+      arr[i]=min;
+   }
+   console.log(arr)
+</script>
+
+</html>

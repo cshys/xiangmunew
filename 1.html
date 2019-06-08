@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.cont{width: 800px;height: 200px;position: relative;margin: 10px auto;overflow: hidden;}
+			.cont a{width: 800px;height: 200px;position: absolute;left: 800px;top: 0;}
+			.cont a:nth-child(1){left: 0;}
+			
+			.cont img{width: 800px;height: 200px;}
+			
+			
+			.btns{}
+			.btns input{border: none;background: rgba(200,200,200,0.8);width: 40px;height: 40px;position: absolute;top: 80px;outline: none;cursor: pointer;z-index: 999999;}
+			#left{left:0;}
+			#right{right:0;}
+			.btns input:active{background: dodgerblue;}
+		</style>
+	</head>
+	<body>
+		<div class="cont">
+			
+			<a><img src="https://img.zcool.cn/community/019ae95cd23bc1a801208f8bd39892.jpg@1380w"/></a>
+			<a><img src="https://img.zcool.cn/community/01db365cd00163a80121416820ee1e.jpg@1380w"/></a>
+			<a><img src="https://img.zcool.cn/community/014aa05ccfafc3a801208f8bd14725.jpg@1380w"/></a>
+			<a><img src="https://img.zcool.cn/community/0155db5ccfaff2a80121416848a517.jpg@1380w"/></a>
+			
+			<div class="btns">
+				<input type="button" id="left" value="<<<" />
+				<input type="button" id="right" value=">>>" />
+			</div>
+		</div>
+	</body>
+	<script src="../move.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function Banner(){
+//			1.选元素
+			this.img = document.querySelectorAll(".cont a");
+			this.left = document.getElementById("left")
+			this.right = document.getElementById("right")
+			
+//			假设当前进来的是第0张
+			this.index = 0;
+//			那么刚才走的是最后一张（length-1）
+			this.iPrev = this.img.length - 1;
+			
+//			2.绑定事件
+			this.init()
+		}
+		Banner.prototype.init = function(){
+			var that = this;
+			this.left.onclick = function(){
+//				3.计算索引
+				that.changeIndex(0)
+			}
+			this.right.onclick = function(){
+//				3.计算索引
+				that.changeIndex(1)
+			}
+		}
+		Banner.prototype.changeIndex = function(type){
+			if(type == 0){
+//				左按钮
+//				自行填充代码
+			}else{
+//				右按钮
+				if(this.index == this.img.length-1){
+					this.index = 0;
+					this.iPrev = this.img.length-1
+				}else{
+					this.index++;
+					this.iPrev = this.index-1
+				}
+			}
+//			4.根据索引显示图片
+			this.display()
+		}
+		Banner.prototype.display = function(){
+			console.log(this.iPrev,this.index)
+//			要走的
+			this.img[this.iPrev].style.left = 0;
+			move(this.img[this.iPrev],{left:-800})
+			
+//			要进来的
+			this.img[this.index].style.left = "800px";
+			move(this.img[this.index],{left:0})
+			
+		}
+		
+		new Banner();
+		
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Untitled Document</title>
+</head>
+<body>
+</body>
+   <script>
+      var arr=[3,5,6,3,3,4,5,7,9,3,8,9,6,2];
+      //数组的方法
+      //方法一：
+      //查看数组中的有没有date这个数据
+      function has(myArr,date){
+         for(var i=0;i<myArr.length;i++){
+            if(myArr[i]==date){
+               return true;
+            }
+         }
+         return false;
+      }
+      function norepeat(myArr){
+         //创建一个空数组，准备存放新数组
+         var newArr=[];
+         console.log(newArr);
+         //遍历数组arr内的值
+         for(var i=0;i<myArr.length;i++){
+            if(!has(newArr,myArr[i])){
+               newArr.push(myArr[i]);
+               console.log(newArr);
+            }
+         }
+         return newArr;
+      }
+      console.log(norepeat(arr));
+
+      // 方法二
+      function norepeat(arr) {
+         var newArr = [];//创建一个空数组，准备存放新数组
+         for (var i = 0;i < arr.length; i++) {
+            if (newArr.indexOf(arr[i]) === -1) {//看新数组中有没有这个数据，若没有indexOf为-1，
+               newArr.push(arr[i]);//把这个数据添加到空数组中
+            }
+         }
+         return newArr;
+      }
+      console.log(norepeat(arr));
+
+      //方法三
+      function norepeat(arr){
+         for(var i=0; i<arr.length; i++){//取第一个值和后面的值做比较
+            for(var j=i+1;j<arr.length;j++){
+               if(arr[i]==arr[j]){
+                  arr.splice(j,1);//若相等，把索引为j的数据删除，
+                  j--;//同时j要--，也就是向前进一位，防止漏掉数据
+               }
+            }
+         }
+         return arr;
+      }
+      console.log(norepeat(arr));
+
+      //方法四
+      //ES6的Set结构
+      var arr=[3,5,6,3,4,5,7,9,3,8,9,6,2];
+      function norepeat(myArr){
+         var s=new Set(arr)//创建一个Set集合，Set默认有去重的功能
+         var newArr=[];//创建一个空数组，准备存放新数组
+         for(var i of s){
+            newArr.push(i)//把Set去重之后的数据通过for-of遍历后添加到空数组中
+         }
+         return newArr;
+      }
+      console.log(norepeat(arr))
+   </script>
+
+</html>

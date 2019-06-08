@@ -1,0 +1,42 @@
+{
+  "name": "mygulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "gulp": "^3.0.2"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "http-proxy-middleware": "^0.19.1"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+https://wenku.baidu.com/view/bd09f15da55177232f60ddccda38376baf1fe006.html
+
+3000×Ö×Ü½á
+
+https://wenku.baidu.com/view/41fa794976232f60ddccda38376baf1ffc4fe3fd.html?from=search

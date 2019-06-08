@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{list-style: none;}
+        #main{width: 1200px;}
+        .margin{margin: 50px auto;width: 900px;}
+        .content{width: 600px;margin-top: 10px;}
+        .content div.left{float: left;width: 200px;}
+        .content div.center{float: left;width: 200px;}
+        .content div.right{float: right; width: 200px;}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="margin">
+            <input type="text" name="" id="txt1" placeholder="菜号">
+            <input type="text" name="" id="txt2" placeholder="菜名">
+            <input type="text" name="" id="txt3" placeholder="价格">
+            <input type="button" value="添加">
+            <div class="content">
+                <div class="left">
+                    <p class="big"></p><b id="jia1">+</b>
+                    <ul>
+                        <li>
+                            <span class="cai"></span>
+                            <span class="price"></span>
+                            <b class="jian"></b>
+                        </li>
+                        <li>
+                            <span class="cai"></span>
+                            <span class="price"></span>
+                            <b class="jian"></b>
+                        </li>
+                        <li>
+                            <span class="cai"></span>
+                            <span class="price"></span>
+                            <b class="jian"></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="center">
+                    <p class="middle"></p><b class="jia">+</b>
+                    <li>
+                        <span class="cai"></span>
+                        <span class="price"></span>
+                        <b class="jian"></b>
+                    </li>
+                    <li>
+                        <span class="cai"></span>
+                        <span class="price"></span>
+                        <b class="jian"></b>
+                    </li>
+                </div>
+                <div class="right">
+                    <p class="small"></p><b class="jia">+</b>
+                    <ul>
+                        <li>
+                            <span class="cai"></span>
+                            <span class="price"></span>
+                            <b class="jian"></b>
+                        </li>
+                        <li>
+                            <span class="cai"></span>
+                            <span class="price"></span>
+                            <b class="jian"></b>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="jquery.2.2.4.js"></script>
+<script>
+    var aBig = document.querySelector(".big")
+    var aMiddle = document.querySelector(".middle")
+    var aSmall = document.querySelector(".small")
+    var ali = document.querySelectorAll("li")
+    var ocai = document.querySelector("li .cai")
+    var oprice = document.querySelector("li .price")
+     var menu = [{
+                "type_id":1,
+                "name":"大菜",
+                "food":[{
+                    "food_id":1,
+                    "name":"鱼香肉丝1",
+                    "price":"10"
+                },{
+                    "food_id":2,
+                    "name":"红烧肉2",
+                    "price":"11"
+                },{
+                    "food_id":3,
+                    "name":"香辣粉3",
+                    "price":"12"
+                }]
+            },{
+                "type_id":2,
+                "name":"中菜",
+                "food":[{
+                    "food_id":4,
+                    "name":"小炒肉",
+                    "price":"13"
+                },{
+                    "food_id":5,
+                    "name":"云吞",
+                    "price":"14"
+                }]
+            },{
+                "type_id":3,
+                "name":"小菜",
+                "food":[{
+                    "food_id":6,
+                    "name":"雪糕",
+                    "price":"15"
+                },{
+                    "food_id":7,
+                    "name":"黄瓜",
+                    "price":"16"
+                }]
+            }];
+    var str="";
+    
+    for (var n=0;n<ali.length;n++) {
+        ali[n].setAttribute("xuhao",n)
+        for(var i=0;i<menu.length;i++){
+            aBig.innerHTML = menu[0].name;
+            aMiddle.innerHTML = menu[1].name;
+            aSmall.innerHTML = menu[2].name;
+            for (var l=0;l<menu[i].food.length;l++) {
+                // console.log(menu[i].food[l].name)
+                // console.log(menu[i].food[l].price) 
+
+                str=`
+                            <span class="cai">${menu[i].food[l].name}</span>
+                            <span class="price">${menu[i].food[l].price}</span>
+                            <b class="jian">-</b>
+                 `
+                
+                 ali[n].innerHTML = str;
+            
+            }
+    }
+       
+    }
+    
+</script>

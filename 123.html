@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="点一点" class="btn">
+    <div class="box">
+        <span>a</span>
+        <span>b</span>
+        <span>c</span>
+        <em>1</em>
+        <em>2</em>
+        <em>3</em>
+    </div>
+</body>
+<script src="jquery.2.2.4.js"></script>
+<script>
+    // var div = document.createElement("div")
+    // document.body.appendChild(div)
+
+    // $("body").append($("<div>"));
+
+    // $(".box").remove()
+    // $(".box").children("span").remove()
+    // $(".box").children().remove()
+    // $(".box *").remove()
+    // $(".box").empty()
+
+    // console.log($(".box").replaceWith())
+
+    // $(".box").replaceWith("<p>"+ $(".box").html() +"</p>")
+    // $(".btn").click(function(){
+    //     console.log(1)
+    // })
+
+
+
+    // $("body").append($(".btn").clone(true))
+    var obj1=(function(){ return { a:1, b:2, fun2:function(){ console.log(this.a+this.b); } } })(); obj1.fun2();
+    
+</script>
+</html>

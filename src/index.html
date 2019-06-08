@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{background: yellow}
+    </style>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="box">hello gulp</div>
+    <span></span>
+    <div class="box1">123</div>
+    <div class="box2">123</div>
+</body>
+<script>
+    document.onclick = function(){
+        var ajax = new XMLHttpRequest();
+        ajax.open("get","api/weather?location=上海");
+        ajax.onreadystatechange = function(){
+            if(ajax.readyState == 4 && ajax.status == 200){
+                console.log(ajax.responseText);
+            }
+        }
+        ajax.send(null);
+    }
+</script>
+</html>

@@ -1,0 +1,164 @@
+// 单值变量
+// $c:pink;
+// .box{
+//     width: 100px;
+//     height: 100px;
+//     background: $c;
+// }
+// .box:hover{
+//     width: 100px;
+//     height: 100px;
+//     background: $c - 20;
+// }
+
+// 复杂变量
+// $abc:red yellow;
+// .box{
+//     width: 100px;
+//     height: 100px;
+//     background: nth($abc,1);
+// }
+// .box:hover{
+//     width: 100px;
+//     height: 100px;
+//     background: nth($abc,2);
+// }
+
+/*
+    这个注释被解析了
+*/
+
+// 多值变量：list
+// $l:(1 10px 20px)(2 30px 40px)(3 50px 60px)(4 50px 610px)(5 50px 620px)(6 50px 630px);
+// @each $s,$w,$h in $l {
+//     .box#{$s}{
+//         width:$w;
+//         height:$h;
+//     }
+// }
+
+// 多值变量：map
+// $m:(h1:20px,h2:30px,h3:40px);
+// @each $k,$v in $m {
+//     #{$k}{
+//         font-size: $v;
+//     }
+// }
+
+
+// 嵌套
+/*
+    html
+    <ul id='box'>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class='last'>4</li>
+    </ul>
+*/
+
+// #box{
+//     width: 100px;height:100px;
+//     li{
+//         border: solid 1px black;
+//         &:hover{
+//             background: red
+//         }
+//     }
+    
+//     .last{
+//         border: none;
+//     }
+// }
+
+// .box{
+//     border:{
+//         left:{
+//             style:solid;
+//             width:2px;
+//             color: red;
+//         }
+//         right:{
+//             style:dashed;
+//             width:1px;
+//             color: blue;
+//         }
+//         top:{
+//             style:dashed;
+//             width:3px;
+//             color: green;
+//         }
+//     }
+// }
+
+// .class{
+//     color:f10;
+//     .child{
+//         width:100px;
+//     }
+// }
+// .class2{
+//     @at-root .child{
+//         color:#b6b6b6;
+//     }
+// }
+// .child{
+//     color:#b6b6b6;
+// }
+
+// mixin混合：代码块，类似于函数，但是没返回值
+// @mixin transform ($px){
+//     -webkit-transform: $px;
+//     -moz-transform: $px;
+//     -ms-transform: $px;
+//     -o-transform: $px;
+//     transform: $px;
+// }
+// .box1{
+//     @include transform(translate(100px));
+// }
+// .box2{
+//     @include transform(rotate(90deg));
+// }
+
+
+// 继承
+// .box{
+//     width:100px;
+//     height:100px;
+//     background: red;
+// }
+// .box2{
+//     @extend .box;
+//     background: blue;
+// }
+
+// 运算+函数
+
+$fs:30px;
+
+@function pTr($px){
+    @return $px / $fs * 1rem;
+}
+
+html{
+    font-size: $fs;
+}
+.box1{
+    width: pTr(100px);
+    height: pTr(100px);
+    background: #ccc;
+}
+.box3{
+    width: pTr(89px);
+    height: pTr(134px);
+    background: #ccc;
+}
+.box2{
+    width: 100px;
+    height: 100px;
+    background: #aaa;
+}
+
+
+
